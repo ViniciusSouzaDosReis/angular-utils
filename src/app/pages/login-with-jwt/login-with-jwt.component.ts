@@ -6,16 +6,20 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
   templateUrl: './login-with-jwt.component.html',
   styleUrls: ['./login-with-jwt.component.css'],
 })
-export class LoginWithJwtComponent  {
+export class LoginWithJwtComponent {
   loginForm!: FormGroup;
 
   ngOnInit(): void {
     this.loginForm = new FormGroup({
       email: new FormControl('', [Validators.required]),
+      password: new FormControl('', [Validators.required]),
     });
   }
-  
-  get email(){
+
+  get email() {
     return this.loginForm.get('email')!;
+  }
+  get password() {
+    return this.loginForm.get('password')!;
   }
 }

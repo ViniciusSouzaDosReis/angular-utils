@@ -10,5 +10,6 @@
       <input name="password" type="password" formControlName="password" />
     </div>
     <div *ngIf="email.errors?.['required']">Email necessario</div>
+    <div *ngIf="password.errors?.['required']">Senha necessaria</div>
   </fieldset>
 </form>
