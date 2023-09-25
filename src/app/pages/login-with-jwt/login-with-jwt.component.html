@@ -1,1 +1,14 @@
-<p>login-with-jwt works!</p>
+<form [formGroup]="loginForm">
+  <fieldset>
+    <legend>Login</legend>
+    <div class="">
+      <label>Email: </label>
+      <input name="email" formControlName="email" required />
+    </div>
+    <div class="">
+      <label>password: </label>
+      <input name="password" type="password" formControlName="password" />
+    </div>
+    <div *ngIf="email.errors?.['required']">Email necessario</div>
+  </fieldset>
+</form>
