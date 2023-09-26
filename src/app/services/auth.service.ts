@@ -43,6 +43,11 @@ export class AuthService {
       );
   }
 
+  logout() {
+    this.cookieService.delete('token');
+    this.router.navigate(['login']);
+  }
+
   get logged() {
     return this.cookieService.check('token');
   }
