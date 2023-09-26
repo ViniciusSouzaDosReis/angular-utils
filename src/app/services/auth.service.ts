@@ -1,5 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
 
 interface User {
   email: string;
@@ -14,10 +16,23 @@ export class AuthService {
 
   constructor(private http: HttpClient) {}
 
-  login(email: string, password: string) {
-    return this.http.post<User>(`${this.apiUrl}/authentication/token`, {
-      email,
-      password,
-    });
+  login(email: string, password: string): Observable<any> {
+    return this.http
+      .post<any>(`${this.apiUrl}/authentication/token`, {
+        email,
+        password,
+      })
+      .pipe(
+        tap({
+          next: (res) => {
+            
+          },
+          error: (err) => {
+            if (err.status !== 200) {
+              return;
+            }
+          },
+        })
+      );
   }
 }

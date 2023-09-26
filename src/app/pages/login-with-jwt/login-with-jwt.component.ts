@@ -10,31 +10,35 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class LoginWithJwtComponent {
   loginForm!: FormGroup;
+  constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit(): void {
+    this.createForm();
+  }
+
+  createForm() {
     this.loginForm = new FormGroup({
       email: new FormControl('', [Validators.required]),
       password: new FormControl('', [Validators.required]),
     });
   }
 
-  constructor(private authService: AuthService, private router: Router) {}
+  login() {
+    const val = this.loginForm.value;
+
+    this.authService.login(val.email, val.password).subscribe((res) => {
+      console.log(res);
+      // console.log('User is logged in');
+      // this.router.navigateByUrl('/home');
+    });
+    // if (val.email && val.password) {
+    // }
+  }
 
   get email() {
     return this.loginForm.get('email')!;
   }
   get password() {
     return this.loginForm.get('password')!;
-  }
-
-  login() {
-    const val = this.loginForm.value;
-
-    if (val.email && val.password) {
-      this.authService.login(val.email, val.password).subscribe(() => {
-        console.log('User is logged in');
-        this.router.navigateByUrl('/home');
-      });
-    }
   }
 }

@@ -6,9 +6,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginWithJwtComponent } from './pages/login-with-jwt/login-with-jwt.component';
+import { HomeComponent } from './pages/home/home.component';
 
 @NgModule({
-  declarations: [AppComponent, LoginWithJwtComponent],
+  declarations: [AppComponent, LoginWithJwtComponent, HomeComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
