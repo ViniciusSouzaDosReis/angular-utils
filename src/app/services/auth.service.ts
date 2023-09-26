@@ -42,4 +42,8 @@ export class AuthService {
         })
       );
   }
+
+  get logged() {
+    return this.cookieService.check('token');
+  }
 }
